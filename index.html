@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookline | AI assistant for HVAC companies</title>
+<meta name="description" content="Bookline answers every HVAC inquiry in seconds, follows up, and books the job while your crew is on site.">
+<meta property="og:title" content="Bookline: Never miss another job">
+<meta property="og:description" content="An AI assistant for HVAC companies. An Entrext venture.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231427A8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='3'/%3E%3Cpath d='M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#0B1033}
+a{color:inherit;text-decoration:none}
+button,input{font-family:inherit}
+.gshift{background-size:220% 220% !important;animation:shift 14s ease infinite}
+@keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes floaty{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+.float{animation:floaty 9s ease-in-out infinite}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.rise{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}
+@keyframes ripple{0%{transform:scale(.7);opacity:.55}100%{transform:scale(1.5);opacity:0}}
+.ring{position:absolute;left:50%;top:50%;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;border:2px solid rgba(255,255,255,.5);animation:ripple 5s ease-out infinite}
+.ring.r2{animation-delay:1.7s}.ring.r3{animation-delay:3.4s}
+@keyframes m1{0%,2%{opacity:0;transform:translateY(12px)}6%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes m2{0%,16%{opacity:0;transform:translateY(12px)}20%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes m3{0%,34%{opacity:0;transform:translateY(12px)}38%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes m4{0%,50%{opacity:0;transform:translateY(12px)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes m5{0%,64%{opacity:0;transform:scale(.92)}69%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+.m1,.m2,.m3,.m4,.m5{animation-duration:14s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.m1{animation-name:m1}.m2{animation-name:m2}.m3{animation-name:m3}.m4{animation-name:m4}.m5{animation-name:m5}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(14,122,75,.6)}100%{box-shadow:0 0 0 10px rgba(14,122,75,0)}}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#0E7A4B;margin-right:6px;animation:pulse 1.6s infinite}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tick{display:flex;width:max-content;animation:tick 28s linear infinite}
+.card{transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(20,39,168,.14)}
+@keyframes reveal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@supports (animation-timeline:view()){.reveal{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 28%}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}.rise{opacity:1}}
+
+html.has-scroll-smooth{overflow:hidden}html.has-scroll-dragging{user-select:none}
+.has-scroll-smooth body{overflow:hidden}.has-scroll-smooth [data-scroll-container]{min-height:100vh}
+.c-scrollbar{position:absolute;right:0;top:0;width:11px;height:100%;transform-origin:center right;transition:transform .3s,opacity .3s;opacity:0;z-index:50}
+.c-scrollbar:hover{transform:scaleX(1.45)}.has-scroll-scrolling .c-scrollbar,.has-scroll-dragging .c-scrollbar{opacity:1}
+.c-scrollbar_thumb{position:absolute;top:0;right:0;background:#1427A8;opacity:.6;width:7px;border-radius:10px;margin:2px;cursor:grab}
+.loco .reveal{animation:none !important;opacity:0;transform:translateY(48px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.loco .reveal.is-inview{opacity:1;transform:none}
+.loco .card.reveal.is-inview:hover{transform:translateY(-6px)}
+</style>
+</head>
+<body>
+<div data-scroll-container>
+
+<div style="background:#fff;width:100%">
+
+<div class="gshift" style="background:linear-gradient(135deg,#070C45 0%,#1427A8 55%,#3A78FF 100%);position:relative;overflow:hidden;color:#fff">
+<div class="float" style="position:absolute;right:-160px;top:-200px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(120,170,255,.45),rgba(120,170,255,0) 70%)"></div>
+<div style="max-width:1160px;margin:0 auto;padding:0 24px;position:relative">
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;padding:28px 0">
+<div style="display:flex;align-items:center;gap:12px;font-weight:700;font-size:22px">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"></rect><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"></path></svg>
+Bookline
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:28px;align-items:center;font-size:15px;font-weight:500">
+<a href="#how">How it works</a><a href="#problem">The problem</a>
+<a href="#join" style="background:#fff;color:#0B1033;padding:12px 20px;border-radius:999px;font-weight:600">Get early access</a>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding:56px 0 110px">
+<div style="flex:1 1 480px;min-width:0">
+<div class="rise d1" style="display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600">AI assistant for HVAC companies</div>
+<h1 class="rise d2" style="margin:22px 0 0;font-size:64px;line-height:1.04;font-weight:800;letter-spacing:-1.5px">Never miss another job.</h1>
+<p class="rise d3" style="margin:22px 0 0;font-size:20px;line-height:1.55;color:rgba(255,255,255,.86);max-width:520px">You don't need more leads. You need to answer the ones you already get. Bookline replies to every inquiry in seconds, follows up, and books the job while your crew is on site.</p>
+<div class="rise d4" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px">
+<a href="#join" style="background:#fff;color:#0B1033;padding:16px 28px;border-radius:999px;font-weight:700;font-size:16px">Get early access</a>
+<a href="#how" style="border:1.5px solid rgba(255,255,255,.55);padding:16px 28px;border-radius:999px;font-weight:600;font-size:16px">See how it works</a>
+</div>
+<div style="margin-top:28px;font-size:14px;color:rgba(255,255,255,.78)">An Entrext venture. Now in early access with HVAC teams.</div>
+</div>
+
+<div class="rise d3" style="flex:1 1 360px;min-width:0;display:flex;justify-content:center;position:relative"><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+<div style="position:relative;width:100%;max-width:400px;background:#fff;color:#0B1033;border-radius:28px;padding:20px;box-shadow:0 40px 80px rgba(3,8,50,.5)">
+<div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid #E6E9F5">
+<div style="font-weight:700;font-size:15px">Summit Heating &amp; Air</div>
+<div style="font-size:12px;font-weight:600;color:#0E7A4B;background:#E3F6EC;padding:4px 10px;border-radius:999px"><span class="dot"></span>Bookline on</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;padding:16px 0;font-size:14px;line-height:1.45">
+<div class="m1" style="font-size:12px;color:#5A617F;text-align:center">Missed call, 2:14 PM</div>
+<div class="m1" style="align-self:flex-start;max-width:82%;background:#EEF1FB;padding:10px 14px;border-radius:16px 16px 16px 4px">Hi, our AC just stopped cooling. Can someone come today?</div>
+<div class="m2" style="align-self:flex-end;max-width:82%;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;padding:10px 14px;border-radius:16px 16px 4px 16px">Sorry to hear that. I can get a technician to you today. What's your address and the best number to reach you?</div>
+<div class="m3" style="align-self:flex-start;max-width:82%;background:#EEF1FB;padding:10px 14px;border-radius:16px 16px 16px 4px">Sure, it's the Maple Street address.</div>
+<div class="m4" style="align-self:flex-end;max-width:82%;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;padding:10px 14px;border-radius:16px 16px 4px 16px">You're booked for 4:30 PM today. I've sent a confirmation to your phone.</div>
+</div>
+<div class="m5" style="display:flex;align-items:center;gap:10px;background:#E3F6EC;color:#0A5C38;padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A5C38" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
+Job booked. Reply took 8 seconds.
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div style="background:#fff;border-bottom:1px solid #E6E9F5;padding:18px 0;overflow:hidden"><div class="tick"><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Missed call</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap">Replied in seconds</span><span style="color:#2347D6;font-weight:700">→</span><span style="padding:0 28px;font-size:15px;font-weight:600;white-space:nowrap;color:#0E7A4B">Job booked</span><span style="color:#B8C0E0">|</span></div></div>
+
+<div style="padding:96px 0"><div style="max-width:1160px;margin:0 auto;padding:0 24px"><div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">TRY IT</div><h2 style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px;max-width:760px">See how Bookline handles a real inquiry.</h2><p style="margin:16px 0 0;font-size:18px;line-height:1.6;color:#4A5170;max-width:640px">Pick a situation. This is the kind of conversation your customers would have.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+<div id="tabs" style="display:contents"></div></div>
+<div class="gshift" style="margin-top:28px;background:linear-gradient(135deg,#070C45 0%,#1427A8 55%,#3A78FF 100%);border-radius:28px;padding:32px;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+<div style="flex:1 1 380px;min-width:0;background:#fff;border-radius:22px;padding:20px"><div class="msgs" id="msgs" style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.45">
+</div></div>
+<div style="flex:1 1 260px;min-width:0;color:#fff"><div style="font-size:14px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.8)">WHAT HAPPENED</div><div style="margin-top:12px;font-size:28px;font-weight:800;line-height:1.2"><span id="outcome"></span></div><p style="margin:14px 0 0;font-size:16px;line-height:1.6;color:rgba(255,255,255,.86)"><span id="outcomeNote"></span></p></div></div></div></div>
+<div id="problem" style="background:#F5F7FF;padding:96px 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 24px">
+<div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">THE PROBLEM</div>
+<h2 style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px;max-width:760px">The customer books whoever answers first.</h2>
+<p style="margin:18px 0 0;font-size:19px;line-height:1.6;color:#4A5170;max-width:680px">When your team is up on a roof, nobody is on the phone. Inquiries pile up, quotes go cold, and the job goes to a competitor.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:44px">
+<div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="font-size:20px;font-weight:700">Missed calls</div><p style="margin:10px 0 0;font-size:16px;line-height:1.55;color:#4A5170">Your crew is on a job. The phone rings out and the customer calls the next company on the list.</p></div>
+<div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="font-size:20px;font-weight:700">Slow replies</div><p style="margin:10px 0 0;font-size:16px;line-height:1.55;color:#4A5170">A message sits for hours. By the time someone answers, the customer has already booked.</p></div>
+<div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="font-size:20px;font-weight:700">Forgotten follow-ups</div><p style="margin:10px 0 0;font-size:16px;line-height:1.55;color:#4A5170">A quote goes out and nobody checks back. Interested customers quietly drift away.</p></div>
+</div>
+</div>
+</div>
+
+<div style="background:#F5F7FF;padding:96px 0"><div style="max-width:1160px;margin:0 auto;padding:0 24px"><div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">A TUESDAY IN AN HVAC SHOP</div><h2 style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px;max-width:760px">Same day. Same crew. Different outcome.</h2><p style="margin:16px 0 0;font-size:18px;line-height:1.6;color:#4A5170;max-width:640px">Flip the switch to see what changes when every inquiry gets an answer.</p>
+<div style="margin-top:28px"><button id="tgl" style="color:#fff;padding:14px 26px;border-radius:999px;font-weight:700;font-size:16px;min-height:48px;cursor:pointer;border:0"></button></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:32px">
+<div id="day" style="display:contents"></div></div></div></div>
+<div id="how" style="padding:96px 0">
+<div style="max-width:1160px;margin:0 auto;padding:0 24px">
+<div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">HOW IT WORKS</div>
+<h2 style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px">Every inquiry answered. Every job followed up.</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:48px">
+<div><div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center">1</div><div style="margin-top:18px;font-size:22px;font-weight:700">Responds instantly</div><p style="margin:10px 0 0;font-size:16px;line-height:1.6;color:#4A5170">Calls, texts and web inquiries get a reply in seconds, day or night, in your company's voice.</p></div>
+<div><div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center">2</div><div style="margin-top:18px;font-size:22px;font-weight:700">Qualifies and books</div><p style="margin:10px 0 0;font-size:16px;line-height:1.6;color:#4A5170">It asks what's wrong, checks urgency and service area, and puts the job on your calendar.</p></div>
+<div><div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center">3</div><div style="margin-top:18px;font-size:22px;font-weight:700">Follows up for you</div><p style="margin:10px 0 0;font-size:16px;line-height:1.6;color:#4A5170">Quotes and open inquiries get a nudge until the customer says yes or no, so nothing goes cold.</p></div>
+</div>
+</div>
+</div>
+
+<div style="padding:96px 0"><div style="max-width:1160px;margin:0 auto;padding:0 24px"><div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">DO THE MATH</div><h2 style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px;max-width:760px">What could one missed call be worth?</h2><p style="margin:16px 0 0;font-size:18px;line-height:1.6;color:#4A5170;max-width:640px">Move the sliders to your own numbers. The recovery rate is an assumption you control, not a promise.</p>
+<div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:40px;align-items:stretch">
+<div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:28px">
+<div><label for="s1" style="font-weight:600;font-size:16px">Inquiries you miss or answer late each week: <span style="color:#2347D6"><span id="v-missed">15</span></span></label><input id="s1" type="range" min="1" max="60" value="15" style="width:100%;margin-top:12px"></div>
+<div><label for="s2" style="font-weight:600;font-size:16px">Average job value: <span style="color:#2347D6">$<span id="v-value">450</span></span></label><input id="s2" type="range" min="100" max="3000" step="50" value="450" style="width:100%;margin-top:12px"></div>
+<div><label for="s3" style="font-weight:600;font-size:16px">Share you win back (assumption): <span style="color:#2347D6"><span id="v-rec">35</span>%</span></label><input id="s3" type="range" min="5" max="80" value="35" style="width:100%;margin-top:12px"></div></div>
+<div class="gshift" style="flex:1 1 320px;min-width:0;background:linear-gradient(135deg,#070C45 0%,#1427A8 55%,#3A78FF 100%);border-radius:28px;padding:36px;color:#fff"><div style="font-size:14px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.8)">ESTIMATED PER MONTH</div><div style="margin-top:12px;font-size:64px;font-weight:800;letter-spacing:-1.5px">$<span id="rev"></span></div><p style="margin:10px 0 0;font-size:17px;color:rgba(255,255,255,.86)">about <span id="jobs"></span> extra jobs booked</p><p style="margin:18px 0 0;font-size:13px;line-height:1.5;color:rgba(255,255,255,.72)">Illustrative only. Based on the numbers you entered and about 4.3 weeks a month.</p></div></div></div></div>
+<div style="background:#F5F7FF;padding:96px 0"><div style="max-width:1160px;margin:0 auto;padding:0 24px">
+<div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">BUILT TO BE TRUSTED</div>
+<h2 class="reveal" style="margin:12px 0 0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px;max-width:760px">Your customers, your voice, your control.</h2>
+<p style="margin:16px 0 0;font-size:18px;line-height:1.6;color:#4A5170;max-width:640px">These are the principles Bookline is being built on.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px"><div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="width:44px;height:44px;border-radius:12px;background:#E8EDFF;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2347D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div style="margin-top:16px;font-size:19px;font-weight:700">You stay in control</div><p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#4A5170">You set the rules: service area, hours, pricing guidance and what it can and can't promise.</p></div><div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="width:44px;height:44px;border-radius:12px;background:#E8EDFF;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2347D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div style="margin-top:16px;font-size:19px;font-weight:700">Humans can step in</div><p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#4A5170">Urgent or unusual requests are handed to your team, and you can take over any conversation.</p></div><div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="width:44px;height:44px;border-radius:12px;background:#E8EDFF;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2347D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div style="margin-top:16px;font-size:19px;font-weight:700">Every conversation logged</div><p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#4A5170">See exactly what was said and what was booked, so nothing happens behind your back.</p></div><div class="card reveal" style="background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:28px"><div style="width:44px;height:44px;border-radius:12px;background:#E8EDFF;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2347D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div style="margin-top:16px;font-size:19px;font-weight:700">Sounds like your company</div><p style="margin:8px 0 0;font-size:15px;line-height:1.55;color:#4A5170">Replies follow your tone and your services, not a generic script.</p></div></div>
+<div class="reveal" style="margin-top:28px;background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:24px 28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between"><div style="font-size:17px;font-weight:600">Built by Entrext, a venture builder.</div><a href="#join" style="color:#2347D6;font-weight:700">Join early access →</a></div>
+</div></div>
+
+<div style="background:#F5F7FF;padding:96px 0"><div style="max-width:1160px;margin:0 auto;padding:0 24px"><div style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
+<div class="reveal" style="flex:1 1 380px;min-width:0"><div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">A NOTE FROM THE TEAM</div>
+<p style="margin:16px 0 0;font-size:22px;line-height:1.55;font-weight:600">We started Bookline after noticing a pattern: good HVAC companies lose work not because they're bad at the job, but because they're busy doing it.</p>
+<p style="margin:16px 0 0;font-size:17px;line-height:1.65;color:#4A5170">We're building it with HVAC owners, not for them. If you run a shop, we'd like to hear how inquiries really get handled at yours, including the messy parts.</p>
+<div style="display:flex;align-items:center;gap:14px;margin-top:24px"><div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center">E</div><div><div style="font-weight:700"><br></div><div style="font-size:14px;color:#4A5170">Entrext, building Bookline</div></div></div></div>
+<div style="flex:1 1 420px;min-width:0"><div style="font-size:14px;font-weight:700;color:#2347D6;letter-spacing:1px">QUESTIONS</div><div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+<div id="faq" style="display:contents"></div></div></div></div></div></div>
+<div id="join" style="padding:0 24px 96px">
+<div style="max-width:1160px;margin:0 auto;background:linear-gradient(135deg,#070C45 0%,#1427A8 55%,#3A78FF 100%);border-radius:32px;padding:72px 32px;text-align:center;color:#fff">
+<h2 style="margin:0;font-size:44px;line-height:1.1;font-weight:800;letter-spacing:-1px">Win more customers without spending more on marketing.</h2>
+<p style="margin:18px auto 0;font-size:19px;line-height:1.55;color:rgba(255,255,255,.86);max-width:560px">Bookline is in early access. Leave your email and we'll reach out to HVAC owners first.</p>
+<div id="formwrap" style="display:contents"><div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:34px"><label for="em" style="position:absolute;left:-9999px">Work email</label><input id="em" type="email" autocomplete="email" placeholder="Work email" style="width:320px;max-width:100%;box-sizing:border-box;padding:16px 22px;border-radius:999px;border:0;font-size:16px;color:#0B1033"><button id="sub" style="background:#0B1033;color:#fff;border:0;padding:16px 30px;border-radius:999px;font-weight:700;font-size:16px;min-height:48px;cursor:pointer">Get early access</button></div></div><div id="done" hidden class="rise" style="margin-top:34px;font-size:20px;font-weight:700">Thanks, we'll be in touch soon.</div>
+</div>
+</div>
+</div>
+
+<div style="border-top:1px solid #E6E9F5;padding:32px 24px">
+<div style="max-width:1160px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:14px;color:#4A5170">
+<div style="font-weight:700;color:#0B1033">Bookline</div>
+<div>An Entrext venture</div>
+</div>
+</div>
+
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+<script>
+const T={"tabSel": "<button data-i=\"%%i%%\" style=\"border:1.5px solid #1427A8;background:#1427A8;color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;min-height:44px;cursor:pointer\" onClick=\"%%pick%%\">%%name%%</button>", "tabUn": "<button data-i=\"%%i%%\" style=\"border:1.5px solid #C9D2F2;background:#fff;color:#0B1033;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;min-height:44px;cursor:pointer\" onClick=\"%%pick%%\">%%name%%</button>", "cust": "<div class=\"rise\" style=\"align-self:flex-start;max-width:85%;background:#EEF1FB;color:#0B1033;padding:10px 14px;border-radius:16px 16px 16px 4px\">%%t%%</div>", "bot": "<div class=\"rise\" style=\"align-self:flex-end;max-width:85%;background:linear-gradient(135deg,#1427A8,#3A78FF);color:#fff;padding:10px 14px;border-radius:16px 16px 4px 16px\">%%t%%</div>", "day": "<div class=\"card\" style=\"background:#fff;border:1px solid #E1E6F6;border-radius:20px;padding:24px\"><div style=\"font-size:14px;font-weight:700;color:#2347D6\">%%time%%</div><p style=\"margin:10px 0 0;font-size:16px;line-height:1.55;color:#0B1033\">%%text%%</p></div>", "faq": "<div style=\"background:#fff;border:1px solid #E1E6F6;border-radius:16px\"><button data-i=\"%%i%%\" style=\"width:100%;text-align:left;background:none;border:0;padding:18px 20px;font-size:17px;font-weight:600;color:#0B1033;cursor:pointer;min-height:44px;display:flex;justify-content:space-between;gap:12px\"><span>%%q%%</span><span style=\"color:#2347D6\">%%sign%%</span></button>%%ans%%</div>", "ans": "<p class=\"rise\" style=\"margin:0;padding:0 20px 18px;font-size:15px;line-height:1.6;color:#4A5170\">%%a%%</p>"};
+const SC=[
+{name:'AC stopped working',msgs:[['c','Our AC just died and it is 95 outside. Can someone come today?'],['b','So sorry, that sounds miserable. I can get a technician to you today. What is your address?'],['c','14 Maple Street.'],['b','Booked for 4:30 PM today. A confirmation is on its way to your phone.']],out:'Booked in under a minute.',note:'Urgent request, answered instantly, and a technician is on the calendar before the customer calls anyone else.'},
+{name:'After-hours call',msgs:[['c','Hi, it is 9 PM and our furnace is making a loud noise.'],['b','Thanks for reaching out. Is there a burning smell or any smoke? If so, please leave the house and call emergency services.'],['c','No smell, just the noise.'],['b','Understood. I have you down for the first slot tomorrow at 8 AM and flagged it for your team.']],out:'Safety first, then booked.',note:'Handled at night, with a clear safety check, and the owner wakes up to a booked job instead of a missed call.'},
+{name:'Quote follow-up',msgs:[['b','Hi Dana, checking in on the quote we sent for the new system. Any questions I can answer?'],['c','Yes, does the price include removal of the old unit?'],['b','It does. Want me to hold a spot for installation next week?'],['c','Yes, Thursday works.']],out:'A quiet quote became a job.',note:'No one had to remember to chase it. The follow-up happened on its own and the customer said yes.'}];
+const FD=[['7:30 AM','Crews head out for the day.','Crews head out. Bookline is watching the phone.'],['10:12 AM','The phone rings. Everyone is on a job. Nobody answers.','The call is answered in seconds and the job is booked for later today.'],['1:40 PM','A website message sits unread while lunch happens.','The message gets a reply within seconds and a visit is scheduled.'],['4:55 PM','A quote sent last week still has no follow-up.','The quote gets a friendly follow-up and the customer picks a date.']];
+const Q=[['Does it replace my team?','No. It handles the first reply, booking and follow-up so your team can focus on the work. Anything unusual goes to a person.'],['What channels will it cover?','We are starting with calls and text-style messages, then web inquiries. We will confirm the exact list with early users.'],['Do I need to change my tools?','The goal is to work alongside the calendar and phone setup you already have. We will check this with each early user.'],['What does it cost?','We have not finalized pricing. Early access users will help shape it.']];
+const FORM_ENDPOINT=''; // paste a Formspree/Google Form/your API URL to collect emails
+const $=id=>document.getElementById(id);
+const f=(t,o)=>t.replace(/%%(\w+)%%/g,(_,k)=>o[k]);
+let sc=0,on=false,open=-1;
+function renderScen(){
+ $('tabs').innerHTML=SC.map((x,i)=>f(i===sc?T.tabSel:T.tabUn,{i,name:x.name})).join('');
+ $('msgs').innerHTML=SC[sc].msgs.map(m=>f(m[0]==='c'?T.cust:T.bot,{t:m[1]})).join('');
+ $('outcome').textContent=SC[sc].out;$('outcomeNote').textContent=SC[sc].note;}
+function renderDay(){const b=$('tgl');b.style.background=on?'#0E7A4B':'#B42318';b.textContent=on?'With Bookline: tap to switch off':'Without Bookline: tap to switch on';
+ $('day').innerHTML=FD.map(d=>f(T.day,{time:d[0],text:on?d[2]:d[1]})).join('');}
+function renderFaq(){$('faq').innerHTML=Q.map((q,i)=>f(T.faq,{i,q:q[0],sign:open===i?'\u2212':'+',ans:open===i?f(T.ans,{a:q[1]}):''})).join('');}
+function calc(){const m=+$('s1').value,v=+$('s2').value,r=+$('s3').value,j=Math.round(m*4.3*r/100);
+ $('v-missed').textContent=m;$('v-value').textContent=v.toLocaleString('en-US');$('v-rec').textContent=r;
+ $('jobs').textContent=j;$('rev').textContent=(j*v).toLocaleString('en-US');}
+document.addEventListener('click',e=>{
+ const t=e.target.closest('#tabs button');if(t){sc=+t.dataset.i;renderScen();return;}
+ const q=e.target.closest('#faq button');if(q){const i=+q.dataset.i;open=open===i?-1:i;renderFaq();return;}
+ if(e.target.closest('#tgl')){on=!on;renderDay();}});
+['s1','s2','s3'].forEach(i=>$(i).addEventListener('input',calc));
+$('sub').addEventListener('click',async()=>{const em=$('em').value.trim();if(!/.+@.+\..+/.test(em)){$('em').focus();return;}
+ if(FORM_ENDPOINT){try{await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email:em})});}catch(_){}}
+ $('formwrap').hidden=true;$('formwrap').style.display='none';$('done').hidden=false;});
+renderScen();renderDay();renderFaq();calc();
+
+// Locomotive Scroll: smooth scroll, in-view reveals, parallax
+let loco=null;
+if(window.LocomotiveScroll&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ const box=document.querySelector('[data-scroll-container]');
+ document.documentElement.classList.add('loco');
+ document.querySelectorAll('.reveal').forEach(e=>{e.setAttribute('data-scroll','');e.setAttribute('data-scroll-offset','12%');});
+ document.querySelectorAll('.gshift').forEach((e,i)=>{if(e.offsetWidth&&e.offsetWidth<1300&&!e.closest('.reveal')){e.setAttribute('data-scroll','');e.setAttribute('data-scroll-speed',i%2?'-1':'1.2');}});
+ loco=new LocomotiveScroll({el:box,smooth:true,lerp:.08,multiplier:1});
+ if(window.ResizeObserver)new ResizeObserver(()=>loco.update()).observe(box);
+ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();loco.scrollTo(t,{offset:-20});}}));
+ setTimeout(()=>loco.update(),700);addEventListener('load',()=>loco.update());
+}
+</script>
+</body>
+</html>
